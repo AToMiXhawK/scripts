@@ -8,7 +8,7 @@ else								#else google search for text in clipboard
     google-chrome-stable https://www.google.com/search?q="${string/\&/%26}"
 fi
 
-# first do install xclip (do: pacman -S xclip)	
+# first do install xclip (do: pacman -S xclip) and google-chrome (obviously!!) 
 # I saved this script in a new folder .scripts in Home
 # and added keyboard shortcut in settings for the command:
 # bash /home/githin/.scripts/clipboard_chrome.sh
