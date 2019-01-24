@@ -1,5 +1,4 @@
-To dump the keybindings you might use:
-./keybindings.pl -e /tmp/keys.csv
+This is a testing repo with testing scripts.
+please don't use them without reading through the script
 
-And to restore them you might use:
-./keybindings.pl -i /tmp/keys.csv
+I am not responsible for any loss of data by running this script
