@@ -11,6 +11,6 @@ fi
 # first do install xclip (do: pacman -S xclip)	
 # I saved this script in a new folder .scripts in Home
 # and added keyboard shortcut in settings for the command:
-# bash /home/githin/.scripts/clipboard_chrome.sh
-# Now when i press this keyboard shortcut, if the text in clipboard is a valid URL,
-# then it is opened in chrome, else does a google search for text in clipboard.	
+# bash $pwd/clipboard_chrome.sh
+# Now when i press this keyboard shortcut, if the text in clipboard or selected text (no need to copy text, just select it) is a valid URL,
+# then it is opened in chrome, else does a google/duckduckgo search for text in clipboard/selected.	
