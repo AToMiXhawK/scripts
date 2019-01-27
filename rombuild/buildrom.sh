@@ -25,10 +25,12 @@ croot
 #setup bulidnotify telegram notification
 export b=1
 bash buildnotify.sh 10 &
+$pidn=$!
 
 #build rom and log the build
 brunch $1 |& tee build.log
 
+kill $pidn
 export b=0	#to stop telegram buildnotify.sh
 
 #check if the build has completed
