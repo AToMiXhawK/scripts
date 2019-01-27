@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project name="bootleg_device_xiaomi_whyred" path="device/xiaomi/whyred" remote="AToMiXhawK" revision="pasta-rebase" />
+  <project name="whyred" path="kernel/xiaomi/whyred" remote="akhilnarang" revision="pie" />
+  <project name="android_vendor_xiaomi_whyred" path="vendor/xiaomi/whyred" remote="GuaiYiHu" revision="mkp" />
+  <project name="android_device_qcom_sepolicy" path="device/qcom/sepolicy" remote="AToMiXhawK" revision="pie" />
+  <project name="android_device_bootleg_sepolicy" path="device/bootleg/sepolicy" remote="AToMiXhawK" revision="lineage-16.0" />
+  <project name="android_packages_resources_devicesettings" path="packages/resources/devicesettings" remote="LineageOS" revision="lineage-16.0" />	
+</manifest>
