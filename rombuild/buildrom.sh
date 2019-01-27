@@ -63,5 +63,6 @@ else
 	#if quiet option isn't specified, send status
 	if [ "$3" != "-q" ]; then
 		telegram-send "Build Failed"
+		bash buildfailed.sh
 	fi
 fi
