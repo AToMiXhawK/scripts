@@ -2,6 +2,10 @@
 #usage:
 #	Place in root directory of build folder and
 #        bash buildrom.sh devicecodename gdrive/afh -q
+telegram-send "<<-------------------------------------->>"
+telegram-send "<<-------------------------------------->>"
+telegram-send "$(date)"
+telegram-send "<<-------------------------------------->>"
 
 mv build.log build_old.log
 #prepare the environment
@@ -68,3 +72,9 @@ else
 		bash buildfailed.sh
 	fi
 fi
+
+telegram-send "<<-------------------------------------->>"
+telegram-send "$(date)"
+telegram-send "<<-------------------------------------->>"
+telegram-send "<<-------------------------------------->>"
+
