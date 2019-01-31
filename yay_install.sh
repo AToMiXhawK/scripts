@@ -5,6 +5,7 @@ yellow='tput setaf 3'
 reset='tput sgr0'
 
 # install yay
+
 release=$(head /etc/os-release -n 1 | cut -d '"' -f 2)
 
 case $release in 
