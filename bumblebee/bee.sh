@@ -22,7 +22,7 @@ else
 	zenity --question --width=500 --title="Hawk Gfx Switch" echo --text="Graphics Card is cureently ENABLED, Do you want to turn it off?"
 	if [ $? = 0 ]
 	then
-		gksu "pacman -U bumblebee-3.2.1-20-x86_64.pkg.tar.xz --noconfirm"
+		gksu "pacman -U $HOME/.scripts/bumblebee/bumblebee-3.2.1-20-x86_64.pkg.tar.xz --noconfirm"
 		gksu "systemctl enable bumblebeed"
 		zenity --question --width=500 --title="Hawk Gfx Switch" echo --text="Reboot now?"
 		if [ $? = 0 ]
