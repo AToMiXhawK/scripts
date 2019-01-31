@@ -30,7 +30,4 @@ case $release in
 	;;
 
 esac
-
 echo -e "\n$($cyan)// All done."
-
-	
