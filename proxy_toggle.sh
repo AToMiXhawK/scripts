@@ -3,14 +3,15 @@ current_g=$(gsettings get org.gnome.system.proxy mode)
 current_t=$(systemctl status tor.service | tail -1 | grep -c "Stopped Anonymizing Overlay Network.")
 if [ $current_g = "'none'" ]
 then
-	zenity --width=500 --question --title="Proxy Switch" echo --text="Tor DISABLED, Do you want to turn on Proxy?"
+	zenity --width=500 --height=100 --question --title="Proxy Switch" echo --text="Tor DISABLED, Do you want to turn on Proxy huh?"
 	if [ $? = 0 ]
 	then
+		killall firefox
 		(
 		echo "0" ; sleep 1
 		echo "# Starting Tor Service" ;
-		if [ $current_t = 1 ]
-		then
+		#if [ $current_t = 0 ]
+		#then
 			gksu systemctl start tor.service
 			echo "10" ; sleep 1
 			echo "# Waiting for Tor to start" ;
@@ -22,10 +23,10 @@ then
 				per=`expr $per + 5`
 				stat=$(systemctl status tor.service | tail -1 | grep -c "Bootstrapped 100%: Done")
 			done
-		else
-			echo "50" ; sleep 1
-			echo "Tor Service already running" ; sleep 1
-		fi
+		#else
+		#	echo "50" ; sleep 1
+		#	echo "Tor Service already running" ; sleep 1
+		#fi
 			
 		echo "80" ; sleep 1
 		echo "Changing Gnome Settings" ; sleep 1
@@ -35,30 +36,32 @@ then
 		echo "100" ; sleep 1
 		echo "# Tor Started Successfully"
 		) |
-		zenity --progress --width=500 --auto-close\
+		zenity --progress --width=500 --height=100 --auto-close\
 		  --title="Proxy Switch" \
 		  --text="Turning Tor ON..." \
 		  --percentage=0
 
 		if [ "$?" = 0 ] ; then
-        		zenity --notification --width=500 \
+        		zenity --notification --width=500 --height=100 \
         		  --text="Tor Started Successfully"
+				firefox --private-window https://check.torproject.org/
 
 		else
-			zenity --error --width=500 \
+			zenity --error --width=500 --height=100 \
         		  --text="Process cancelled"
 		fi
 	
 	else
-		zenity --error --width=500 \
+		zenity --error --width=500 --height=100 \
         	 --text="Process cancelled"
 	fi
 	
 
 else
-	zenity --width=500 --question --title="Proxy Switch" echo --text="Tor Enabled, What do you want to do?\n Press Yes to Restart Tor Sevice.\n Press No to Disable Tor"
+	zenity --width=500 --height=100 --question --title="Proxy Switch" echo --text="Tor Enabled, What do you want to do?\n Press Yes to Restart Tor Sevice.\n Press No to Disable Tor"
 	if [ $? = 0 ]	
 	then
+			killall firefox
 			(
 			echo "0" ; sleep 1
 			echo "# Restarting Tor Service" ;
@@ -81,28 +84,27 @@ else
 			echo "100" ; sleep 1
 			echo "# Tor Restarted Successfully"
 			) |
-			zenity --progress --width=500 --auto-close\
+			zenity --progress --width=500 --height=100 --auto-close\
 			  --title="Proxy Switch" \
 			  --text="Turning Tor ON..." \
 			  --percentage=0
 
 			if [ "$?" = 0 ] ; then
-				zenity --notification --width=500 \
+				zenity --notification --width=500 --height=100 \
 				  --text="Tor Restarted Successfully"
+				firefox --private-window https://check.torproject.org/
 
 			else
-				zenity --error --width=500 \
+				zenity --error --width=500 --height=100 \
 				  --text="Process cancelled"
 			fi
 
 	else
+		killall firefox
 		gksu systemctl stop tor.service
 		gsettings set org.gnome.system.proxy mode 'none'
-		zenity --notification --title="Proxy Switch" --width=500 \
+		zenity --notification --title="Proxy Switch" --width=500 --height=100 \
 				  --text="Tor Disabled"
-
+		firefox https://check.torproject.org/
 	fi
 fi
-sleep 1
-firefox https://check.torproject.org/
-		
