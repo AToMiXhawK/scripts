@@ -5,7 +5,7 @@ if [[ $string =~ $regex ]]  		#check if text in clipboard is a valid URL
 then 
     google-chrome-stable "$(xclip -o)"
 else								#else google search for text in clipboard 	
-    google-chrome-stable https://www.google.com/search?q="${string/\&/%26}"
+    google-chrome-stable https://www.google.com/search?q="$(echo $string)"
 fi
 
 # first do install xclip (do: pacman -S xclip) and google-chrome (obviously!!) 

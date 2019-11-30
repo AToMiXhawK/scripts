@@ -10,34 +10,32 @@ then
 		killall chrome
 		(
 		echo "0" ; sleep 1
-		echo "# Starting Tor Service 0%" ;
+		echo "# Starting Tor Service" ;
 		#if [ $current_t = 0 ]
 		#then
 			gksu systemctl start tor.service
-			echo "5" ; sleep 1
-			echo "# Waiting for Tor to start 10%" ;
-			per=10
-			stat=$(systemctl status tor.service | grep -c "Bootstrapped 100% (done): Done")
+			echo "10" ; sleep 1
+			echo "# Waiting for Tor to start" ;
+			per=15
+			stat=$(systemctl status tor.service | grep -c "Bootstrapped 100%: Done")
 			while [ $stat = 0 ]
 			do
-				echo "# Waiting for Tor to start $per%" ;
-				echo $per ; sleep 0.2
-				per=`expr $per + 1`
-				stat=$(systemctl status tor.service | tail -1 | grep -c "Bootstrapped 100% (done): Done")
+				echo $per ; sleep 1
+				per=`expr $per + 5`
+				stat=$(systemctl status tor.service | tail -1 | grep -c "Bootstrapped 100%: Done")
 			done
 		#else
 		#	echo "50" ; sleep 1
 		#	echo "Tor Service already running" ; sleep 1
 		#fi
-
-		echo "80"
-		echo "# Changing Gnome Settings 80%"
-			gsettings set org.gnome.system.proxy mode 'manual' ; sleep 2
-		echo "90"
-		echo "# Finishing Jobs 90%" ; sleep 2
-		echo "99"
-		echo "# Tor Started Successfully 100%"; sleep 2
-		echo "100"
+			
+		echo "80" ; sleep 1
+		echo "Changing Gnome Settings" ; sleep 1
+			gsettings set org.gnome.system.proxy mode 'manual'
+		echo "90" ; sleep 1
+		echo "# Finishing Jobs" ; sleep 1
+		echo "100" ; sleep 1
+		echo "# Tor Started Successfully"
 		) |
 		zenity --progress --width=500 --height=100 --auto-close\
 		  --title="Proxy Switch" \
@@ -67,27 +65,25 @@ else
 			killall firefox
 			(
 			echo "0" ; sleep 1
-			echo "# Restarting Tor Service 0%" ;
+			echo "# Restarting Tor Service" ;
 				gksu systemctl restart tor.service
-				echo "5" ; sleep 1
-				echo "# Waiting for Tor to start 10%" ;
-				per=10
-				stat=$(systemctl status tor.service | grep -c "Bootstrapped 100% (done): Done")
+				echo "10" ; sleep 1
+				echo "# Waiting for Tor to start" ;
+				per=15
+				stat=$(systemctl status tor.service | grep -c "Bootstrapped 100%: Done")
 				while [ $stat = 0 ]
 				do
-					echo "# Waiting for Tor to restart $per%" ;
-					echo $per ; sleep 0.2
-					per=`expr $per + 1`
-					stat=$(systemctl status tor.service | tail -1 | grep -c "Bootstrapped 100% (done): Done")
+					echo $per ; sleep 1
+					per=`expr $per + 5`
+					stat=$(systemctl status tor.service | tail -1 | grep -c "Bootstrapped 100%: Done")
 				done
-			echo "80"
-			echo "# Changing Gnome Settings 80%"
-				gsettings set org.gnome.system.proxy mode 'manual' ; sleep 2
-			echo "90"
-			echo "# Finishing Jobs 90%" ; sleep 2
-			echo "99"
-			echo "# Tor Retarted Successfully 100%"; sleep 2
-			echo "100"
+			echo "80" ; sleep 1
+			echo "Changing Gnome Settings" ; sleep 1
+				gsettings set org.gnome.system.proxy mode 'manual'
+			echo "90" ; sleep 1
+			echo "# Finishing Jobs" ; sleep 1
+			echo "100" ; sleep 1
+			echo "# Tor Restarted Successfully"
 			) |
 			zenity --progress --width=500 --height=100 --auto-close\
 			  --title="Proxy Switch" \
